@@ -61,7 +61,12 @@ class TasksScreen extends StatelessWidget {
                 child: ListView(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  children: [],
+                  children: [
+                    ListTile(
+                      title: Text('title here'),
+                      subtitle: Text('subdtilr here'),
+                    )
+                  ],
                 ),
                 decoration: const BoxDecoration(
                   color: Colors.white,
