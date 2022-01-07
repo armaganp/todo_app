@@ -3,13 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:todo_app/constants.dart';
 import 'package:todo_app/models/task_list_data.dart';
-import 'package:todo_app/screens/tasks_screen.dart';
-import 'package:todo_app/widgets.dart/task_list.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  TextEditingController textEditingController;
-  Function(String) addButtonOnPressed;
-  AddTaskScreen(
+  final TextEditingController textEditingController;
+  final Function addButtonOnPressed;
+  const AddTaskScreen(
       {Key? key,
       required this.textEditingController,
       required this.addButtonOnPressed})
@@ -33,12 +31,10 @@ class AddTaskScreen extends StatelessWidget {
                       autofocus: true,
                       textAlign: TextAlign.center,
                       autocorrect: true,
-
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Write Task Here',
                       ),
-                      // onSubmitted: (val) => log(val),
                     ),
                   ),
                   const SizedBox(
@@ -53,10 +49,12 @@ class AddTaskScreen extends StatelessWidget {
                                 const TextStyle(fontSize: 20.0))),
                         onPressed: () {
                           log('add_task_screen > ${textEditingController.text}');
-                          addButtonOnPressed(textEditingController.text);
-                          textEditingController.clear();
+                          addButtonOnPressed();
+                          // maybe this
                           TaskListData h = TaskListData();
+                          h.incrementTaskNumber();
                           h.addTaskListData(textEditingController.text);
+                          textEditingController.clear();
 
                           Navigator.pop(context);
                         },

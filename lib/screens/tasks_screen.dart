@@ -14,30 +14,16 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  late TextEditingController textEditingController = TextEditingController();
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   textEditingController = TextEditingController();
-  // }
-  //
-  // @override
-  // void dispose() {
-  //   super.dispose();
-  //   textEditingController.dispose();
-  // }
-
+  TextEditingController textEditingController = TextEditingController();
   TaskListData tld = TaskListData();
-  addButtonOnPressedCallBack(String text) {
-    setState(() {
-      tld.addTaskListData(text);
-    });
-    log('tasks_screen > $text');
+
+  updateUI() {
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    String remainedTask = tld.getTaskNumber();
+    String totalTask = tld.getTaskNumber().toString();
     return (Scaffold(
       backgroundColor: Colors.indigo,
       body: SafeArea(
@@ -74,7 +60,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           height: 4.0,
                         ),
                         Text(
-                          'Total Task: $remainedTask',
+                          'Total Task: $totalTask',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 10.0,
@@ -109,7 +95,7 @@ class _TasksScreenState extends State<TasksScreen> {
             // builder takes the current context and return a widget
             builder: (context) => AddTaskScreen(
               textEditingController: textEditingController,
-              addButtonOnPressed: addButtonOnPressedCallBack,
+              addButtonOnPressed: updateUI,
             ),
           );
         },
